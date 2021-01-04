@@ -1102,7 +1102,7 @@ export class NgxMatIoBrokerConnectorService {
 
   // Created a connection to the socket adapter
   // For more information, look into the socket adapter documentation (https://github.com/ioBroker/ioBroker.socketio)
-  connect(ip: string, port: number) {
+  connect(ip: string, port: number, protocol: string = 'http') {
     /*****************************************************************************
      ***  set up connection to the ioBroker socketIO adapter                      *
      *****************************************************************************/
@@ -1113,7 +1113,7 @@ export class NgxMatIoBrokerConnectorService {
 
       this.servConn.init({
         name: '',  // optional - default 'vis.0'
-        connLink: 'http://' + ip + ':' + port,  // optional URL of the socket.io adapter
+        connLink: protocol + '://' + ip + ':' + port,  // optional URL of the socket.io adapter
         socketSession: ''           // optional - used by authentication
       }, {
         onConnChange: (isConnected) => {
